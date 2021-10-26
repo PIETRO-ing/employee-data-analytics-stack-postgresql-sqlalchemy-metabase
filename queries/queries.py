@@ -3,7 +3,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 import time
 
-time.sleep(300)
+time.sleep(250)
 print('Hello!\nConnecting!')
 # make the connection
 pg = create_engine('postgresql://postgres:pwd@postgresdb/company', echo=True)
