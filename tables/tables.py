@@ -49,14 +49,14 @@ time.sleep(20)
 print('Creating regions table')
 time.sleep(20)
 # regions table
-pg.execute("""create table regions (
+pg.execute("""create table if not exists regions (
    region_id int,
    region varchar(20),
    country varchar(20),
    primary key (region_id)
   );""")
 time.sleep(20)
-print('Inserting valuen into regions')
+print('Inserting values into regions')
 time.sleep(20)
 # insert values inside regions table
 pg.execute("""insert into regions values (1, 'Southwest', 'United States');
@@ -70,7 +70,7 @@ time.sleep(20)
 print('Creating employees table')
 time.sleep(20)
 # create table employees
-pg.execute("""create table employees (
+pg.execute("""create table if not exists employees (
 	employee_id INT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
@@ -1090,3 +1090,5 @@ insert into employees values (1000, 'Jacquelin', 'Cassam', 'jcassamrr@cam.ac.uk'
 
 time.sleep(5)
 print('Done!!!!!!!!!!!!!!!!!!\nYou can start practicing queries, have fun!!!!')
+
+print('Let''s start with queries')
