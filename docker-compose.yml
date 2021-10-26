@@ -18,4 +18,11 @@ services:
               - POSTGRES_PASSWORD=pwd
               - POSTGRES_DB=company
        
+       queries:
+              build: queries/
+              volumes:
+              - ./queries/:/app
+              depends_on:
+              - postgresdb
+       
        
