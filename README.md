@@ -19,4 +19,16 @@ Practicing queries:
 - case;
 - join table.
 
+## Structure
+![](./Images/architecture.png)
+- docker-compose.yml is the file that make everything possible, there are all the istruction for the containers;
+- tables directory is the one responsible to create all the tables;
+- queries directory will start after all the tables are created and contain all the queries.
+
+## Let's the music start 
+
+![](./Images/herbert_von_karajan.png)
+
+sudo docker-compose up (inside the directory where .yml file is located) is like Herbert Von Karajan directing the Berliner Philharmoniker.
+Setting time.sleep() inside .py files is crucial to create all the tables one by one and then running the queries.
 
