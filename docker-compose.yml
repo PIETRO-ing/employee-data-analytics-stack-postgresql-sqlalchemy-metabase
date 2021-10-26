@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+       tables:
+              build: tables/
+              volumes:
+              - ./tables/:/app
+              depends_on:
+              - postgresdb
+
+       postgresdb:
+              image: postgres
+              ports:
+              - "5555:5432"
+              environment:
+              - POSTGRES_USER=postgres
+              - POSTGRES_PASSWORD=pwd
+              - POSTGRES_DB=company
+       
+       
