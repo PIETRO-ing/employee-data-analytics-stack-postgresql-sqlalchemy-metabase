@@ -52,7 +52,6 @@ order by count(*) desc;"""
 df_04 = pd.read_sql(query_04, pg)
 print(df_04)
 
-
 #transposing a table
 query_05 = """select sum ( case when salary < 100000 then 1 else 0  end) as UNDER_PAID,
 sum ( case when salary > 100000 and salary < 160000 then 1 else 0 end) as PAID_WELL,
@@ -77,7 +76,6 @@ from  employees inner join regions
 on employees.region_id = regions.region_id;"""
 df_07 = pd.read_sql(query_07, pg)
 print(df_07)
-
 
 query_08 = """select first_name, email, division, country
 from employees inner join departments
@@ -146,11 +144,11 @@ query_14 = """select a.category, count(*) total_employees, sum(a.salary) total_s
 df_14 = pd.read_sql(query_14, pg)
 print(df_14)
 
-
 print('rank employees table over department based on salary highest to low')
 query_15 = """select first_name, last_name, department, salary,
               rank() over(partition by department order by )
               from employees"""
 df_15 = pg.read_sql(query_15, pg)
 print(df_15)
-              
+
+
