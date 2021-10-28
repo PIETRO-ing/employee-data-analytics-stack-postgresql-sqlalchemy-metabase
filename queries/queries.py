@@ -175,6 +175,7 @@ query_18 = """select first_name, last_name, department, salary,
               lag(salary) over(order by salary desc) as closest_higher_employee
               from employees;"""
 df_18 = pg.read_sql(query_18, pg)
+print(df_18)
 
 
 
