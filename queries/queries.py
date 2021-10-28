@@ -160,3 +160,13 @@ query_16 = """select a.first_name, a.last_name, a.department, a.salary
               order by salary desc;"""
 df_16 = pg.read_sql(query_16, pg)
 print(df_16)
+
+print('creat a two column with lead and lag')
+query_17 = """select first_name, last_name, department,
+              rank() over(partition by department order by salary desc) as salary_rank,
+              salary,
+              lead(salary) over() as next_salary,
+              lag(salary) over() as previous_salary
+              from employees;"""
+df_17 = pg.read_sql(query_17, pg)
+
