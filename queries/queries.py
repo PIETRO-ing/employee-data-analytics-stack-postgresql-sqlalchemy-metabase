@@ -151,4 +151,9 @@ query_15 = """select first_name, last_name, department, salary,
 df_15 = pg.read_sql(query_15, pg)
 print(df_15)
 
-
+print('All the highest paid employees for each department')
+query_16 = """select a.first_name, a.last_name, a.department, a.salary
+              from (select first_name, last_name, department, salary,
+              rank() over(partition by department order by salary desc)
+              from employees) a
+              where rank = 1;"""
