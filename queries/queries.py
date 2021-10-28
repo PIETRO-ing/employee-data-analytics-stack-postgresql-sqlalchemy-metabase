@@ -203,7 +203,14 @@ query_21 = """select sum(case when a.count_name = 3 then 1 else 0 end) count_3,
               order by count(*) desc)a;"""
 df_21 = pg.read_sql(query_21, pg)
 
-
+print("how many employees in Sports, Tools, Clothing, Computers department? show in a transposed way")
+query_22 = """select sum( case when department = 'Sports' then 1 else 0 end ) as Sports,
+              sum( case when department = 'Tools' then 1 else 0 end ) as Tools,
+              sum( case when department = 'Clothing' then 1 else 0 end ) as Clothing,
+              sum( case when department = 'Computers' then 1 else 0 end ) as Computers
+              from employees;"""
+df_22 = pg.read_sql(query_22, pg)
+print(df_22)
 
 
 
