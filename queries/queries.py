@@ -170,3 +170,11 @@ query_17 = """select first_name, last_name, department,
               from employees;"""
 df_17 = pg.read_sql(query_17, pg)
 
+query_18 = """select first_name, last_name, department, salary,
+              lead(salary) over(order by salary desc) as closest_lower_employee,
+              lag(salary) over(order by salary desc) as closest_higher_employee
+              from employees;"""
+df_18 = pg.read_sql(query_18, pg)
+
+
+
