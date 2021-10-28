@@ -184,6 +184,25 @@ query_19 = """select first_name, last_name, department, salary,
 df_19 = pg.read_sql(query_19, pg)
 print(query_19)
 
+print('how many employees with the same first name?')
+query_20 = """select first_name, count(*) count_name
+              from employees
+              group by first_name
+              having count(*) != 1
+              order by count(*) desc;"""
+df_20 = pg.read_sql(query_20, pg)
+print(df_20)
+
+print('let''s transpose that information')
+query_21 = """select sum(case when a.count_name = 3 then 1 else 0 end) count_3,
+              sum(case when a.count_name = 2 then 1 else 0 end) count_2
+              from (select first_name, count(*) count_name
+              from employees
+              group by first_name
+              having count(*) !=1
+              order by count(*) desc)a;"""
+df_21 = pg.read_sql(query_21, pg)
+
 
 
 
