@@ -156,4 +156,7 @@ query_16 = """select a.first_name, a.last_name, a.department, a.salary
               from (select first_name, last_name, department, salary,
               rank() over(partition by department order by salary desc)
               from employees) a
-              where rank = 1;"""
+              where rank = 1
+              order by salary desc;"""
+df_16 = pg.read_sql(query_16, pg)
+print(df_16)
