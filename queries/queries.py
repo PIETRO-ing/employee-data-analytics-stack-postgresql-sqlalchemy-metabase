@@ -106,12 +106,51 @@ from employees;"""
 df_10 = pd.read_sql(query_10, pg)
 print(df_10)
 
-query_11 = """select department, count(*)
+query_11 = """select department, count(*) as total_employees, sum(salary) as total_salary
 from employees
 group by department
 union all
-select 'TOTAL', count(*)
+select 'TOTAL', count(*), sum(salary)
 from employees;"""
 df_11 = pd.read_sql(query_11, pg)
 print(df_11)
 
+print('The total salary paid by each department?')
+query_12 = """select department, sum(salary) as total_salary
+              from employees
+              group by department
+              order by total_salary desc;"""
+df_12 = pd.read_sql(query_12, pg)
+print(df_12)
+
+query_13 = """select first_name, last_name, department, sum(salary) over(partition by department) total_salary
+              from employees
+              order by total_salary desc;"""
+df_13 = pd.read_sql(query_13, pg)
+print(df_13)
+
+print('how many under paid, paid well or executiv are there?')
+query_14 = """select a.category, count(*) total_employees, sum(a.salary) total_salary
+              from (
+              select first_name, salary,
+              case
+                  when salary < 100000 then 'UNDER PAID'
+	              when salary > 100000 and salary < 160000 then 'PAID WELL'
+	              when salary > 160000 then 'EXECUTIVE'
+	              else 'UNPAID'
+              end as category
+              from employees
+              order by salary desc )a
+              group by a.category
+              order by count(*) desc;"""
+df_14 = pd.read_sql(query_14, pg)
+print(df_14)
+
+
+print('rank employees table over department based on salary highest to low')
+query_15 = """select first_name, last_name, department, salary,
+              rank() over(partition by department order by )
+              from employees"""
+df_15 = pg.read_sql(query_15, pg)
+print(df_15)
+              
