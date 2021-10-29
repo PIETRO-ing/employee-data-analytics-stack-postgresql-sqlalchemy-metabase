@@ -222,5 +222,14 @@ query_23 = """select a.email_domain, count(*)
 df_23 = pd.read_sql(query_23, pg)
 print(df_23)
 
+print('min, max, avg salary broken down by gender, region, country')
+query_24 = """select e.gender gender, e.region_id id_region, r.region||r.country country,min(salary) min, max(salary) max, round(avg(salary)) avg
+              from employees e inner join regions r on e.region_id = r.region_id
+              group by gender, id_region, r.region||r.country
+              order by gender;"""
+df_24 = pd.read_sql(query_24, pg)
+print(df_24)
+
+
 
 
