@@ -212,5 +212,14 @@ query_22 = """select sum( case when department = 'Sports' then 1 else 0 end ) as
 df_22 = pg.read_sql(query_22, pg)
 print(df_22)
 
+print('how many employees with the same email domain?')
+query_23 = """select a.email_domain, count(*)
+              from (select substring(email, position('@' in email)+1) as email_domain
+              from employees)a
+              where a.email_domain is not null
+              group by a.email_domain
+              order by count(*) desc;"""
+df_23 = pd.read_sql(query_23, pg)
+
 
 
