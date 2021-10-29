@@ -220,6 +220,7 @@ query_23 = """select a.email_domain, count(*)
               group by a.email_domain
               order by count(*) desc;"""
 df_23 = pd.read_sql(query_23, pg)
+print(df_23)
 
 
 
