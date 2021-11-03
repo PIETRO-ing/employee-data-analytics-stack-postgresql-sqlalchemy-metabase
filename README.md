@@ -29,6 +29,6 @@ Practicing queries:
 
 ![](./Images/herbert_von_karajan.png)
 
-sudo docker-compose up (inside the directory where .yml file is located) is like Herbert Von Karajan directing the Berliner Philharmoniker.
-Setting time.sleep() inside .py files is crucial to create all the tables one by one and then running the queries.
+sudo docker-compose up (inside the directory where .yml file is located) is like Herbert Von Karajan directing the Berliner Philharmoniker, it will run all the containers.
+Setting time.sleep() inside .py files is crucial to create all the tables one by one and then running the queries in this precise order.
 
