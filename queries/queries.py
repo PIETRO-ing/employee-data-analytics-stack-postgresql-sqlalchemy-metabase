@@ -148,7 +148,7 @@ print('rank employees table over department based on salary highest to low')
 query_15 = """select first_name, last_name, department, salary,
               rank() over(partition by department order by )
               from employees"""
-df_15 = pg.read_sql(query_15, pg)
+df_15 = pd.read_sql(query_15, pg)
 print(df_15)
 
 print('All the highest paid employees for each department')
@@ -158,7 +158,7 @@ query_16 = """select a.first_name, a.last_name, a.department, a.salary
               from employees) a
               where rank = 1
               order by salary desc;"""
-df_16 = pg.read_sql(query_16, pg)
+df_16 = pd.read_sql(query_16, pg)
 print(df_16)
 
 print('creat a two column with lead and lag')
@@ -168,20 +168,20 @@ query_17 = """select first_name, last_name, department,
               lead(salary) over() as next_salary,
               lag(salary) over() as previous_salary
               from employees;"""
-df_17 = pg.read_sql(query_17, pg)
+df_17 = pd.read_sql(query_17, pg)
 
 query_18 = """select first_name, last_name, department, salary,
               lead(salary) over(order by salary desc) as closest_lower_employee,
               lag(salary) over(order by salary desc) as closest_higher_employee
               from employees;"""
-df_18 = pg.read_sql(query_18, pg)
+df_18 = pd.read_sql(query_18, pg)
 print(df_18)
 
 query_19 = """select first_name, last_name, department, salary,
               lead(salary) over(partition by department order by salary desc) as closest_lower_employee,
               lag(salary) over(partition by department order by salary desc) as closest_higher_employee
               from employees;"""
-df_19 = pg.read_sql(query_19, pg)
+df_19 = pd.read_sql(query_19, pg)
 print(query_19)
 
 print('how many employees with the same first name?')
@@ -190,7 +190,7 @@ query_20 = """select first_name, count(*) count_name
               group by first_name
               having count(*) != 1
               order by count(*) desc;"""
-df_20 = pg.read_sql(query_20, pg)
+df_20 = pd.read_sql(query_20, pg)
 print(df_20)
 
 print('let''s transpose that information')
@@ -201,7 +201,7 @@ query_21 = """select sum(case when a.count_name = 3 then 1 else 0 end) count_3,
               group by first_name
               having count(*) !=1
               order by count(*) desc)a;"""
-df_21 = pg.read_sql(query_21, pg)
+df_21 = pd.read_sql(query_21, pg)
 
 print("how many employees in Sports, Tools, Clothing, Computers department? show in a transposed way")
 query_22 = """select sum( case when department = 'Sports' then 1 else 0 end ) as Sports,
@@ -209,7 +209,7 @@ query_22 = """select sum( case when department = 'Sports' then 1 else 0 end ) as
               sum( case when department = 'Clothing' then 1 else 0 end ) as Clothing,
               sum( case when department = 'Computers' then 1 else 0 end ) as Computers
               from employees;"""
-df_22 = pg.read_sql(query_22, pg)
+df_22 = pd.read_sql(query_22, pg)
 print(df_22)
 
 print('how many employees with the same email domain?')
