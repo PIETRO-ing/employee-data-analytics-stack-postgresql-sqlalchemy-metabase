@@ -29,6 +29,18 @@ Practicing queries:
 
 ![](./Images/herbert_von_karajan.png)
 
-sudo docker-compose up (inside the directory where .yml file is located) is like Herbert Von Karajan directing the Berliner Philharmoniker, it will run all the containers.
+docker-compose up (inside the directory where .yml file is located) is like Herbert Von Karajan directing the Berliner Philharmoniker, it will run all the containers.
 Setting time.sleep() inside .py files is crucial to create all the tables one by one and then running the queries in this precise order.
+
+## docker-compose commands
+
+- docker-compose up              -----> start the entire pipeline
+- docker-compose up -d           -----> start the entire pipeline in the background
+- docker-compose up logs queries -----> show the output of queries
+- docker-compose up -d queries   -----> run service: queries in the background
+- docker-compose start queries   -----> start service queries
+- docker-compose stop queries    -----> stop service queries
+- docker-compose rm queries      -----> remove service queries
+- docker-compose ps              -----> show running containers
+- docker-compose ps -a           -----> show all containers running and not
 
