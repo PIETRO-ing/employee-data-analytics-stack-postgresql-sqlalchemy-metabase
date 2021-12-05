@@ -44,3 +44,7 @@ Setting time.sleep() inside .py files is crucial to create all the tables one by
 - docker-compose ps              -----> show running containers
 - docker-compose ps -a           -----> show all containers running and not
 
+## connect to the database
+
+sudo psql -U postgres -d company -h localhost -p 5555
+password for user postgres: pwd
