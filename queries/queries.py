@@ -230,6 +230,6 @@ query_24 = """select e.gender gender, e.region_id id_region, r.region||r.country
 df_24 = pd.read_sql(query_24, pg)
 print(df_24)
 
-
+print('---*Congratulations, all the queries are running correctly*---')
 
 
