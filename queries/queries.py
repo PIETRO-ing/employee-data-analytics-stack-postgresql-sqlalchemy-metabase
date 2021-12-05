@@ -146,7 +146,7 @@ print(df_14)
 
 print('rank employees table over department based on salary highest to low')
 query_15 = """select first_name, last_name, department, salary,
-              rank() over(partition by department order by )
+              rank() over(partition by department order by salary desc)
               from employees"""
 df_15 = pd.read_sql(query_15, pg)
 print(df_15)
