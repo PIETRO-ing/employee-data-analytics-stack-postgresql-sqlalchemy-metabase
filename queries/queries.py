@@ -230,6 +230,13 @@ query_24 = """select e.gender gender, e.region_id id_region, r.region||r.country
 df_24 = pd.read_sql(query_24, pg)
 print(df_24)
 
+query_25 = """select department,
+              replace(department, 'Clothing', 'XXXXX') modified_dept,
+              department||' '|| 'XXXXX' complete_dept_name
+              from employees;"""
+df_25 = pd.read_sql(query_25, pg)
+print(df_25)
+
 print('---*Congratulations, all the queries are running correctly*---')
 
 
