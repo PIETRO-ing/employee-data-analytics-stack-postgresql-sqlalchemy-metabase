@@ -22,6 +22,7 @@ query_01 = """select * from employees
 df_01 = pd.read_sql(query_01, pg)
 print(df_01)
 
+print('\n\n\n')
 query_02 = """select department, gender, sum(salary)
 from employees
 group by department, gender
@@ -29,13 +30,14 @@ order by sum(salary) desc;"""
 df_02 = pd.read_sql(query_02,pg)
 print(df_02)
 
+print('\n\n\n---*How many employees without an email?*---')
 query_03 = """select count(*)
 from employees
 where email is NULL;"""
 df_03 = pd.read_sql(query_03, pg)
 print(df_03)
 
-
+print('\n\n\n---*How many under paid, paid well, executive?*---')
 query_04 = """select a.category, count(*)
 from (
 select first_name||' '||last_name full_name, salary,
