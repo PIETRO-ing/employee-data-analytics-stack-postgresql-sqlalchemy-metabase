@@ -237,7 +237,6 @@ query_25 = """select department,
 df_25 = pd.read_sql(query_25, pg)
 print(df_25)
 
-
-print('---*Congratulations, all the queries are running correctly*---')
+print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
