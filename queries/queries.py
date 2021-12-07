@@ -90,7 +90,7 @@ from employees inner join regions on employees.region_id = regions.region_id
 where hire_date = (select max(hire_date) from (select first_name, department, hire_date, country
 from employees inner join regions on employees.region_id = regions.region_id)a)
 union all
-(select first_name, last_name, department, hire_date, country
+(select first_name||' '||last_name full_name, department, hire_date, country
 from employees inner join regions on employees.region_id = regions.region_id
 where hire_date = (select min(hire_date) from (select first_name, last_name, department, hire_date, country
 from employees inner join regions on employees.region_id = regions.region_id) b)
