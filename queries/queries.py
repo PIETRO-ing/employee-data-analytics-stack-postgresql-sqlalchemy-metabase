@@ -14,7 +14,7 @@ query_00 = """select *
 df_00 = pd.read_sql(query_00, pg)
 print(df_00)
 
-# highest paid employees
+print('\n\n\n---*Top 5 highest paid employees*---')
 query_01 = """select * from employees
                where salary > 100000
                order by salary desc
@@ -38,7 +38,7 @@ print(df_03)
 
 query_04 = """select a.category, count(*)
 from (
-select first_name, salary,
+select first_name||' '||last_name full_name, salary,
 case
     when salary < 100000 then 'UNDER PAID'
 	when salary > 100000 and salary < 160000 then 'PAID WELL'
@@ -60,7 +60,7 @@ from employees;"""
 df_05 = pd.read_sql(query_05, pg)
 print(df_05)
 
-query_06 = """select first_name, case when region_id = 1 then 'USA' end as region_1_SW_USA,
+query_06 = """select first_name||' '||last_name full_name, case when region_id = 1 then 'USA' end as region_1_SW_USA,
 case when region_id = 2 then 'USA' end as region_2_NE_USA,
 case when region_id = 3 then 'USA' end as region_3_NW_USA,
 case when region_id = 4 then 'ASIA' end as region_4_CENTRAL_ASIA,
@@ -71,13 +71,13 @@ from employees;"""
 df_06 = pd.read_sql(query_06, pg)
 print(df_06)
 
-query_07 = """select first_name, country
+query_07 = """select first_name||' '||last_name full_name, country
 from  employees inner join regions
 on employees.region_id = regions.region_id;"""
 df_07 = pd.read_sql(query_07, pg)
 print(df_07)
 
-query_08 = """select first_name, email, division, country
+query_08 = """select first_name||' '||last_name, email, division, country
 from employees inner join departments
 on employees.department = departments.department
 inner join regions on employees.region_id = regions.region_id --join w/ the result of the others
@@ -85,7 +85,7 @@ where email is not null;"""
 df_08 = pd.read_sql(query_08, pg)
 print(df_08)
 
-query_09 = """select first_name, last_name, department, hire_date, country
+query_09 = """select first_name||' '||last_name full_name, department, hire_date, country
 from employees inner join regions on employees.region_id = regions.region_id
 where hire_date = (select max(hire_date) from (select first_name, department, hire_date, country
 from employees inner join regions on employees.region_id = regions.region_id)a)
@@ -99,7 +99,7 @@ order by hire_date;"""
 df_09 = pd.read_sql(query_09, pg)
 print(df_09)
 
-query_10 = """select first_name, department, count(*) over(partition by department)
+query_10 = """select first_name||' '||last_name full_name, department, count(*) over(partition by department)
 from employees;"""
 df_10 = pd.read_sql(query_10, pg)
 print(df_10)
@@ -121,7 +121,7 @@ query_12 = """select department, sum(salary) as total_salary
 df_12 = pd.read_sql(query_12, pg)
 print(df_12)
 
-query_13 = """select first_name, last_name, department, sum(salary) over(partition by department) total_salary
+query_13 = """select first_name||' '||last_name full_name, department, sum(salary) over(partition by department) total_salary
               from employees
               order by total_salary desc;"""
 df_13 = pd.read_sql(query_13, pg)
@@ -152,7 +152,7 @@ df_15 = pd.read_sql(query_15, pg)
 print(df_15)
 
 print('All the highest paid employees for each department')
-query_16 = """select a.first_name, a.last_name, a.department, a.salary
+query_16 = """select a.first_name||' '||a.last_name full_name, a.department, a.salary
               from (select first_name, last_name, department, salary,
               rank() over(partition by department order by salary desc)
               from employees) a
@@ -162,7 +162,7 @@ df_16 = pd.read_sql(query_16, pg)
 print(df_16)
 
 print('creat a two column with lead and lag')
-query_17 = """select first_name, last_name, department,
+query_17 = """select first_name||' '||last_name full_name, department,
               rank() over(partition by department order by salary desc) as salary_rank,
               salary,
               lead(salary) over() as next_salary,
@@ -170,14 +170,14 @@ query_17 = """select first_name, last_name, department,
               from employees;"""
 df_17 = pd.read_sql(query_17, pg)
 
-query_18 = """select first_name, last_name, department, salary,
+query_18 = """select first_name||' '||last_name full_name, department, salary,
               lead(salary) over(order by salary desc) as closest_lower_employee,
               lag(salary) over(order by salary desc) as closest_higher_employee
               from employees;"""
 df_18 = pd.read_sql(query_18, pg)
 print(df_18)
 
-query_19 = """select first_name, last_name, department, salary,
+query_19 = """select first_name||' '||last_name full_name, department, salary,
               lead(salary) over(partition by department order by salary desc) as closest_lower_employee,
               lag(salary) over(partition by department order by salary desc) as closest_higher_employee
               from employees;"""
@@ -185,7 +185,7 @@ df_19 = pd.read_sql(query_19, pg)
 print(query_19)
 
 print('how many employees with the same first name?')
-query_20 = """select first_name, count(*) count_name
+query_20 = """select first_name||' '||last_name full_name, count(*) count_name
               from employees
               group by first_name
               having count(*) != 1
