@@ -185,7 +185,7 @@ df_19 = pd.read_sql(query_19, pg)
 print(query_19)
 
 print('\n\n\n---*how many employees with the same first name?*---')
-query_20 = """select first_name||' '||last_name full_name, count(*) count_name
+query_20 = """select first_name, count(*) count_name
               from employees
               group by first_name
               having count(*) != 1
