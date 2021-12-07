@@ -232,7 +232,7 @@ print(df_24)
 
 query_25 = """select department,
               replace(department, 'Clothing', 'XXXXX') modified_dept,
-              department||' '|| 'XXXXX' complete_dept_name
+              department||' '|| 'department' complete_dept_name
               from employees;"""
 df_25 = pd.read_sql(query_25, pg)
 print(df_25)
