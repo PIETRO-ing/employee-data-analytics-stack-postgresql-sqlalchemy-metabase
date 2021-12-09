@@ -22,7 +22,7 @@ query_01 = """select * from employees
 df_01 = pd.read_sql(query_01, pg)
 print(df_01)
 
-print('\n\n\n')
+print('\n\n\n---*Total salary broken by department and gender*---')
 query_02 = """select department, gender, sum(salary)
 from employees
 group by department, gender
@@ -54,7 +54,7 @@ order by count(*) desc;"""
 df_04 = pd.read_sql(query_04, pg)
 print(df_04)
 
-#transposing a table
+print('\n\n\n---*Transposing the previous query*---')
 query_05 = """select sum ( case when salary < 100000 then 1 else 0  end) as UNDER_PAID,
 sum ( case when salary > 100000 and salary < 160000 then 1 else 0 end) as PAID_WELL,
 sum( case when salary > 160000 then 2 else 0 end) as EXECUTIVE
@@ -62,6 +62,7 @@ from employees;"""
 df_05 = pd.read_sql(query_05, pg)
 print(df_05)
 
+print('\n\n\n')
 query_06 = """select first_name||' '||last_name full_name, case when region_id = 1 then 'USA' end as region_1_SW_USA,
 case when region_id = 2 then 'USA' end as region_2_NE_USA,
 case when region_id = 3 then 'USA' end as region_3_NW_USA,
@@ -73,12 +74,14 @@ from employees;"""
 df_06 = pd.read_sql(query_06, pg)
 print(df_06)
 
+print('\n\n\n')
 query_07 = """select first_name||' '||last_name full_name, country
 from  employees inner join regions
 on employees.region_id = regions.region_id;"""
 df_07 = pd.read_sql(query_07, pg)
 print(df_07)
 
+print('\n\n\n')
 query_08 = """select first_name||' '||last_name, email, division, country
 from employees inner join departments
 on employees.department = departments.department
@@ -87,6 +90,7 @@ where email is not null;"""
 df_08 = pd.read_sql(query_08, pg)
 print(df_08)
 
+print('\n\n\n')
 query_09 = """select first_name||' '||last_name full_name, department, hire_date, country
 from employees inner join regions on employees.region_id = regions.region_id
 where hire_date = (select max(hire_date) from (select first_name, department, hire_date, country
@@ -101,11 +105,13 @@ order by hire_date;"""
 df_09 = pd.read_sql(query_09, pg)
 print(df_09)
 
+print('\n\n\n')
 query_10 = """select first_name||' '||last_name full_name, department, count(*) over(partition by department)
 from employees;"""
 df_10 = pd.read_sql(query_10, pg)
 print(df_10)
 
+print('\n\n\n')
 query_11 = """select department, count(*) as total_employees, sum(salary) as total_salary
 from employees
 group by department
@@ -123,6 +129,7 @@ query_12 = """select department, sum(salary) as total_salary
 df_12 = pd.read_sql(query_12, pg)
 print(df_12)
 
+print('\n\n\n')
 query_13 = """select first_name||' '||last_name full_name, department, sum(salary) over(partition by department) total_salary
               from employees
               order by total_salary desc;"""
@@ -172,6 +179,7 @@ query_17 = """select first_name||' '||last_name full_name, department,
               from employees;"""
 df_17 = pd.read_sql(query_17, pg)
 
+print('\n\n\n')
 query_18 = """select first_name||' '||last_name full_name, department, salary,
               lead(salary) over(order by salary desc) as closest_lower_employee,
               lag(salary) over(order by salary desc) as closest_higher_employee
@@ -179,6 +187,7 @@ query_18 = """select first_name||' '||last_name full_name, department, salary,
 df_18 = pd.read_sql(query_18, pg)
 print(df_18)
 
+print('\n\n\n')
 query_19 = """select first_name||' '||last_name full_name, department, salary,
               lead(salary) over(partition by department order by salary desc) as closest_lower_employee,
               lag(salary) over(partition by department order by salary desc) as closest_higher_employee
@@ -232,6 +241,7 @@ query_24 = """select e.gender gender, e.region_id id_region, r.region||r.country
 df_24 = pd.read_sql(query_24, pg)
 print(df_24)
 
+print('\n\n\n')
 query_25 = """select department,
               replace(department, 'Clothing', 'XXXXX') modified_dept,
               department||' '|| 'department' complete_dept_name
