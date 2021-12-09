@@ -249,6 +249,13 @@ query_25 = """select department,
 df_25 = pd.read_sql(query_25, pg)
 print(df_25)
 
+print('\n\n\n')
+query_26 = """select first_name||' '||last_name, department, sum(salary) over(partition by department), salary ,
+ (salary - (select max(salary) from employees)) less_sal
+from employees;"""
+df_26 = pd.read_sql(query_26, pg)
+print(df_26)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
