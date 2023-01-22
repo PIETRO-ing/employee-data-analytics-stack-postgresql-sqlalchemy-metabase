@@ -25,7 +25,7 @@ Practicing queries:
 - tables directory is the one responsible to create all the tables;
 - queries directory will start after all the tables are created and contain all the queries.
 
-## Let's the music start 
+## Let the music start 
 
 ![](./Images/herbert_von_karajan.png)
 
