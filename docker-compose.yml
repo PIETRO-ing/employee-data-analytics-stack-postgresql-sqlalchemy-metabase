@@ -25,4 +25,10 @@ services:
               depends_on:
               - postgresdb
        
+       metabase:
+              image: metabase/metabase
+              ports:
+              - "3000:3000"  # Access Metabase at http://localhost:3000
+              depends_on:
+              - postgresdb
        
