@@ -10,7 +10,7 @@ print('Hello!\nConnecting!')
 pg = create_engine('postgresql://postgres:pwd@postgresdb/company', echo=True)
 
 # create departments table
-time.sleep(20)
+#time.sleep(20)
 print('Creating departments table')
 time.sleep(20)
 
