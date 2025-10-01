@@ -6,10 +6,10 @@ import time
 
 print('Hello!\nConnecting!')
 
-# make the connection
+# Make the connection
 pg = create_engine('postgresql://postgres:pwd@postgresdb/company', echo=True)
 
-# create departments table
+# Create departments table
 time.sleep(20)
 print('Creating departments table')
 time.sleep(5)
@@ -59,7 +59,7 @@ print('Creating regions table')
 
 time.sleep(5)
 
-# regions table
+# Create regions table
 with pg.connect() as conn:
     conn.execute(text("""create table if not exists regions (
    region_id int,
@@ -69,12 +69,9 @@ with pg.connect() as conn:
   );"""))
     conn.commit()
 
-
-
 time.sleep(5)
 print('Inserting values into regions')
 time.sleep(5)
-# insert values inside regions table
 
 with pg.connect() as conn:
     conn.execute(text("""insert into regions values (1, 'Southwest', 'United States');
@@ -86,14 +83,13 @@ insert into regions values (6, 'Quebec', 'Canada');
 insert into regions values (7, 'Nova Scotia', 'Canada');"""))
     conn.commit()
     
-
 time.sleep(5)
 
 print('Creating employees table')
 
 time.sleep(5)
 
-# create table employees
+# Create table employees
 with pg.connect() as conn:
     conn.execute(text("""create table if not exists employees (
 	employee_id INT,
@@ -109,13 +105,12 @@ with pg.connect() as conn:
 );"""))
     conn.commit()
 
-
 time.sleep(5)
 
 print('Inserting values into emplyees table')
 
 time.sleep(5)
-# insert values inside employees table
+
 with pg.connect() as conn:
     conn.execute(text("""
     insert into employees values (1, 'Berrie', 'Manueau', 'bmanueau0@dion.ne.jp', '2006-04-20', 'Sports', 'F', 154864, 4);
@@ -1119,8 +1114,6 @@ with pg.connect() as conn:
     insert into employees values (999, 'Kingston', 'Piwall', 'kpiwallrq@nyu.edu', '2012-07-07', 'Music', 'M', 45679, 7);
     insert into employees values (1000, 'Jacquelin', 'Cassam', 'jcassamrr@cam.ac.uk', '2010-01-27', 'Music', 'F', 28726, 2);"""))
     conn.commit()
-
-
 
 time.sleep(5)
 print('Done!!!!!!!!!!!!!!!!!!\nYou can start practicing queries, have fun!!!!')
