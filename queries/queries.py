@@ -3,7 +3,7 @@ import sqlalchemy
 from sqlalchemy import create_engine, text
 import time
 
-time.sleep(20)
+time.sleep(100)
 print('Hello!\nConnecting!')
 
 # Make the connection
