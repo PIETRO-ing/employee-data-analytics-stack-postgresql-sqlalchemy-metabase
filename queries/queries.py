@@ -3,12 +3,13 @@ import sqlalchemy
 from sqlalchemy import create_engine, text
 import time
 
-time.sleep(250)
+time.sleep(20)
 print('Hello!\nConnecting!')
-# make the connection
+
+# Make the connection
 pg = create_engine('postgresql://postgres:pwd@postgresdb/company', echo=True)
 
-# just to see if everything is working
+# Just to see if everything is working
 query_00 = """select * 
               from regions;"""
 
@@ -16,6 +17,7 @@ with pg.connect() as conn:
     df_00 = pd.read_sql(query_00, pg)
     print(df_00)
 
+# Queries
 print('\n\n\n---*Top 5 highest paid employees*---')
 query_01 = """select * from employees
                where salary > 100000
