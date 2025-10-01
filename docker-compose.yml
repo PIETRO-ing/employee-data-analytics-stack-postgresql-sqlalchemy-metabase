@@ -17,6 +17,8 @@ services:
               - POSTGRES_USER=postgres
               - POSTGRES_PASSWORD=pwd
               - POSTGRES_DB=company
+              volumes:
+              - pgdata:/var/lib/postgresql/data
        
        queries:
               build: queries/
@@ -30,7 +32,11 @@ services:
               ports:
               - "3000:3000"  # Access Metabase at http://localhost:3000
               volumes:
-              - ./metabase-data/metabase.db:/metabase.db
+              - metabase-data:/metabase.db
               depends_on:
               - postgresdb
+
+volumes:
+       pgdata:
+       metabase-data:
        
