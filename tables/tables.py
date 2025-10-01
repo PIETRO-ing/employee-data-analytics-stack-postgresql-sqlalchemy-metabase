@@ -10,9 +10,9 @@ print('Hello!\nConnecting!')
 pg = create_engine('postgresql://postgres:pwd@postgresdb/company', echo=True)
 
 # create departments table
-#time.sleep(20)
-print('Creating departments table')
 time.sleep(20)
+print('Creating departments table')
+time.sleep(5)
 
 with pg.connect() as conn:
     conn.execute(text("""create table if not exists departments (
@@ -21,10 +21,10 @@ with pg.connect() as conn:
     primary key (department));"""))
     conn.commit()
 
-time.sleep(20)
+time.sleep(5)
 
 print('Inserting values into departments')
-time.sleep(20)
+time.sleep(5)
 
 with pg.connect() as conn:
     conn.execute(text("""insert into departments values ('Clothing','Home');
@@ -53,11 +53,11 @@ with pg.connect() as conn:
      insert into departments values ('Movies','Entertainment');"""))
     conn.commit()
     
-time.sleep(20)
+time.sleep(5)
 
 print('Creating regions table')
 
-time.sleep(20)
+time.sleep(5)
 
 # regions table
 with pg.connect() as conn:
@@ -71,9 +71,9 @@ with pg.connect() as conn:
 
 
 
-time.sleep(20)
+time.sleep(5)
 print('Inserting values into regions')
-time.sleep(20)
+time.sleep(5)
 # insert values inside regions table
 
 with pg.connect() as conn:
@@ -87,11 +87,11 @@ insert into regions values (7, 'Nova Scotia', 'Canada');"""))
     conn.commit()
     
 
-time.sleep(20)
+time.sleep(5)
 
 print('Creating employees table')
 
-time.sleep(20)
+time.sleep(5)
 
 # create table employees
 with pg.connect() as conn:
@@ -110,11 +110,11 @@ with pg.connect() as conn:
     conn.commit()
 
 
-time.sleep(20)
+time.sleep(5)
 
 print('Inserting values into emplyees table')
 
-time.sleep(20)
+time.sleep(5)
 # insert values inside employees table
 with pg.connect() as conn:
     conn.execute(text("""
