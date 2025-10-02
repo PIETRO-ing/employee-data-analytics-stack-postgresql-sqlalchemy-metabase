@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import sqlalchemy
 from sqlalchemy import create_engine, text
@@ -6,8 +7,14 @@ import time
 
 print('Hello!\nConnecting!')
 
-# Make the connection
-pg = create_engine('postgresql://postgres:pwd@postgresdb/company', echo=True)
+# Read DB connection info from environment variables
+db_user = os.getenv('POSTGRES_USER')
+db_pass = os.getenv('POSTGRES_PASSWORD')
+#db_host = os.getenv('POSTGRES_HOST', 'postgresdb')  # Default to Docker service name
+db_name = os.getenv('POSTGRES_DB')
+
+# Create the SQLAlchemy engine
+pg = create_engine(f'postgresql://{db_user}:{db_pass}@postgresdb/{db_name}', echo=True)
 
 # Create departments table
 time.sleep(20)
