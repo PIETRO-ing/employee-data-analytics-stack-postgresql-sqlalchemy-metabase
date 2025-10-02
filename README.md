@@ -138,7 +138,9 @@ Here are common 'docker-compose' commands to manage the project
 If you've mapped port  `5555` to the PostgreSQL container, you can connect manually using:
 
 ```bash
-psql -U postgres -d company -h localhost -p 5555
+psql -U POSTGRES_USER -d POSTGRES_DB -h localhost -p 5555
+
+password: POSTGRES_PASSWORD
 ```
 
 ---
