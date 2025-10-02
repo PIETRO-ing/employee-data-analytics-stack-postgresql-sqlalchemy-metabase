@@ -10,7 +10,6 @@ print('Hello!\nConnecting!')
 # Read DB connection info from environment variables
 db_user = os.getenv('POSTGRES_USER')
 db_pass = os.getenv('POSTGRES_PASSWORD')
-#db_host = os.getenv('POSTGRES_HOST', 'postgresdb')  # Default to Docker service name
 db_name = os.getenv('POSTGRES_DB')
 
 # Create the SQLAlchemy engine
