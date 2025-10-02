@@ -156,10 +156,9 @@ password: POSTGRES_PASSWORD
 
 ## Dashboards with Metabase
 
-* Employees per department
-* Avg salary per region (if salary data is added)
-* New hires over time (if hire date is added)
-* Interactive filters by department or region
+* Dashboard Preview
+
+![Company Dashboard]('metabase_dashboards/company_dashboard_metabse.png')
 
 ---
 
