@@ -34,6 +34,7 @@ After the tables are built, the `queries` service executes various types of SQL 
 * Joins
 * Subqueries
 * CASE expressions
+* Correlated Subqueries
 
 ### 3. Visualize with Metabase
 
