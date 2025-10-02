@@ -45,6 +45,12 @@ Metabase connects to the PostgreSQL database and provides a web UI to explore da
 
 ### First Time Setup (Build Everything)
 
+Before running the command below it's essential to create a `.env` file in the same folder of the `.yml` file with the following content:
+
+- POSTGRES_USER
+- POSTGRES_PASSWORD
+- POSTGRES_DB
+
 ```bash
 docker-compose up --build
 ```
@@ -63,9 +69,9 @@ Access Metabase at: [http://localhost:3000](http://localhost:3000)
 > * **Database:** PostgreSQL
 > * **Host:** `postgresdb`
 > * **Port:** `5432`
-> * **Database name:** `company`
-> * **Username:** `postgres`
-> * **Password:** `pwd`
+> * **Database name:** from `.env`
+> * **Username:** from `.env`
+> * **Password:** from `.env`
 
 ---
 
@@ -103,7 +109,7 @@ docker-compose down
 
 ## Metabase Persistence
 
-* Metabase data (users, dashboards, settings) is persisted in `./metabase-data/metabase.db`
+* Metabase data (users, dashboards, settings) is persisted in `metabase-data:/metabase.db`
 * PostgreSQL uses Docker volumes, so your data will persist even if the containers are stopped or restarted.
 
 ✅ Your dashboards and admin login will **persist between sessions**
@@ -133,7 +139,6 @@ If you've mapped port  `5555` to the PostgreSQL container, you can connect manua
 
 ```bash
 psql -U postgres -d company -h localhost -p 5555
-# password: pwd
 ```
 
 ---
