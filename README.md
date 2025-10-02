@@ -158,7 +158,7 @@ password: POSTGRES_PASSWORD
 
 * Dashboard Preview
 
-![Company Dashboard]('metabase_dashboards/company_dashboard_metabse.png')
+![Company Dashboard](metabase_dashboards/company_dashboard_metabase.png)
 
 ---
 
