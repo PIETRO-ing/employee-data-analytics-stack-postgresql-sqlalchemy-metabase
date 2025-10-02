@@ -10,6 +10,7 @@ It demonstrates how to design a relational database, perform SQL-based analysis,
 | `tables/`            | Creates the PostgreSQL database and tables using SQLAlchemy |
 | `queries/`           | Runs SQL queries on the created database                    |
 | `metabase-data/`           | Data visualization UI connected to the PostgreSQL database  |
+| `metabase-dashboards/` | Dashboards .png files                                     |
 | `docker-compose.yml` | Coordinates all services and defines container behavior     |
 
 ---
