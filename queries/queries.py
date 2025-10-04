@@ -321,6 +321,28 @@ with pg.connect() as conn:
     df_26 = pd.read_sql(query_26, pg)
     print(df_26)
 
+print('\n\n\n----Which are the lowest and highest paid employees per department?---')
+query_27 = """with ranked_employees as (
+		select first_name||' '||last_name full_name,
+		department,
+		salary,
+		rank() over (partition by department order by salary desc) as max_rnk,
+		rank() over (partition by department order by salary asc) as min_rnk
+		from employees
+)
+select full_name, department, salary,
+       case when max_rnk = 1 then 'HIGHEST DEPT SAL'
+		     when min_rnk = 1 then 'LOWEST DEPT SAL'
+			 end salary_status
+from ranked_employees
+where max_rnk = 1 or min_rnk = 1
+order by department;
+"""
+
+with pg.connect() as conn:
+    df_27 = pd.read_sql(query_27, pg)
+    print(df_27)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
