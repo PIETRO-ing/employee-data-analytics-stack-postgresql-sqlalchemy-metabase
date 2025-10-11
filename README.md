@@ -164,4 +164,8 @@ password: POSTGRES_PASSWORD
 
 ---
 
+## Future Development
+
+* Add a FASTAPI service on Docker Compose to build an API app to show the Dashboards 
+
 
