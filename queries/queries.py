@@ -343,7 +343,7 @@ with pg.connect() as conn:
     df_27 = pd.read_sql(query_27, pg)
     print(df_27)
 
-print("\n\n\n-----What's the the hire year range?-----")
+print("\n\n\n-----What's the hire year range?-----")
 query_28 = """select extract (year from min(hire_date)) earliest_hire_year, extract (year from max(hire_date)) latest_hire_year
 from employees;"""
 
