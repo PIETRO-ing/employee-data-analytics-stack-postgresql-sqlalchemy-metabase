@@ -36,6 +36,7 @@ After the tables are built, the `queries` service executes various types of SQL 
 * Subqueries
 * CASE expressions
 * Correlated Subqueries
+* Common Table Expression (CTE)
 
 ### 3. Visualize with Metabase
 
