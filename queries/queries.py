@@ -343,6 +343,48 @@ with pg.connect() as conn:
     df_27 = pd.read_sql(query_27, pg)
     print(df_27)
 
+print("\n\n\n-----What's the the hire year range?-----")
+query_28 = """select extract (year from min(hire_date)) earliest_hire_year, extract (year from max(hire_date)) latest_hire_year
+from employees;"""
+
+with pg.connect() as conn:
+    df_28 = pd.read_sql(query_28, pg)
+    print(df_28)
+
+print("\n\n\n-----What's the total hire over the years?-----")
+query_29 = """select extract(year from hire_date) hiring_year, count(*) as yearly_total
+from employees
+group by (extract (year from hire_date))
+order by hiring_year;"""
+
+with pg.connect() as conn:
+    df_29 = pd.read_sql(query_29, pg)
+    print(df_29)
+
+print("\n\n\n----What's the total hire over the years break down by department?-----")
+query_30 = """select extract(year from hire_date) hiring_year, department, count(*) as yearly_total
+from employees
+group by (extract (year from hire_date)), department
+order by hiring_year;"""
+
+with pg.connect() as conn:
+    df_30 = pd.read_sql(query_30, pg)
+    print(df_30)
+
+print("\n\n\n-----Total amount of hired by department?-----")
+query_31 = """with hiring_dept as (select extract(year from hire_date) hiring_year, department, count(*) as yearly_total
+from employees
+group by (extract (year from hire_date)), department
+order by hiring_year)
+select department, sum(yearly_total) total
+from hiring_dept
+group by department
+order by total desc;"""
+
+with pg.connect() as conn:
+    df_31 = pd.read_sql(query_31, pg)
+    print(df_31)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
