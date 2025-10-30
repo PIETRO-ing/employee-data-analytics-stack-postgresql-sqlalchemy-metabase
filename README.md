@@ -162,6 +162,9 @@ password: POSTGRES_PASSWORD
 
 ![Company Dashboard](metabase_dashboards/company_dashboard_metabase.png)
 
+![Hire Date Analysis](metabase_dashboards/hire_date_analysis.png)
+* This dashboard shows when the company started to hire and when was the last hire. How many people where hired over the years and the total amount of hired people over the years per departments.
+
 ---
 
 ## Future Development
