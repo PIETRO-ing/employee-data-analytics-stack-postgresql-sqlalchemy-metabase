@@ -158,12 +158,13 @@ password: POSTGRES_PASSWORD
 
 ## Dashboards with Metabase
 
-* Dashboard Preview
+* Dashboard Title: **Company Workforce Overview**
 
 ![Company Dashboard](metabase_dashboards/company_dashboard_metabase.png)
+* Section 1: **Key Metrics (KPI Cards)**
 
 ![Hiring Trends](metabase_dashboards/hire_date_analysis.png)
-* This dashboard shows when the company started to hire and when was the last hire. How many people where hired over the years and the total amount of hired people over the years per departments.
+* Section 2: **Hiring Trends** - This dashboard shows when the company started to hire and when was the last hire. How many people where hired over the years and the total amount of hired people over the years per departments.
 
 ---
 
