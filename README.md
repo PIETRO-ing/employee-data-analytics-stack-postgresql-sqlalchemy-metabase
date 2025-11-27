@@ -161,7 +161,8 @@ password: POSTGRES_PASSWORD
 * Section 1: **Key Metrics (KPI Cards)** - This section gives an overview of the key metrics.
 ![Key Metrics (KPI Cards)](metabase_dashboards/kpi.png)
 
-* Section 2: **Demographics & Diversity** - 
+* Section 2: **Demographics & Diversity** - This section shows the gender distribution, thgrae employees per department, country and region.
+![Demographics & Diversity](metabase_dashboards/Dem_&_Div_1.png)
 
 * Section 3: **Hiring Trends** - This section shows when the company started to hire and when was the last hire. How many people where hired over the years and the total amount of hired people over the years per departments.
 ![Hiring Trends](metabase_dashboards/hire_date_analysis.png)
