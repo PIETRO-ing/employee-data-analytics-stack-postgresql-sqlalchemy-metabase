@@ -167,6 +167,7 @@ password: POSTGRES_PASSWORD
 
 * Section 3: **Hiring Trends** - This section shows when the company started to hire and when was the last hire. How many people where hired over the years and the total amount of hired people over the years per departments.
 ![Hiring Trends](metabase_dashboards/hire_date_analysis.png)
+![Hiring Trends](metabase_dashboards/hiring_analysis_tenure_bucket.png)
 
 * Section 4: **Salary Insights** - This section shows the salary distribution per department, gender, country, region, and the top 10 highest paid employees.
 ![Slary Insights](metabase_dashboards/salary_insights_1.png)
