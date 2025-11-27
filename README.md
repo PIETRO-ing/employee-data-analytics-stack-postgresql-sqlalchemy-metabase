@@ -159,7 +159,7 @@ password: POSTGRES_PASSWORD
 ## Dashboard with Metabase: Company Workforce Overview
 
 * Section 1: **Key Metrics (KPI Cards)** - This section gives an overview of the key metrics.
-![Key Metrics (KPI Cards)](metabase_dashboards/section_1.png)
+![Key Metrics (KPI Cards)](metabase_dashboards/kpi.png)
 
 * Section 2: **Demographics & Diversity** - 
 
