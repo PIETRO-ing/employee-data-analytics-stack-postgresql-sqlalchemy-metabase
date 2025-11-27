@@ -169,7 +169,7 @@ password: POSTGRES_PASSWORD
 ![Hiring Trends](metabase_dashboards/hire_date_analysis.png)
 
 * Section 4: **Salary Insights**
-
+![Slary Insights](metabase_dashboards/salary_insights_1.png)
 
 ---
 
