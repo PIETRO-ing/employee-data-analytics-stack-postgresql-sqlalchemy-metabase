@@ -170,6 +170,7 @@ password: POSTGRES_PASSWORD
 
 * Section 4: **Salary Insights**
 ![Slary Insights](metabase_dashboards/salary_insights_1.png)
+![Slary Insights](metabase_dashboards/salary_insights_2.png)
 
 ---
 
