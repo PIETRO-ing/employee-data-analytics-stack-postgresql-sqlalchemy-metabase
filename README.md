@@ -161,7 +161,7 @@ password: POSTGRES_PASSWORD
 * Section 1: **Key Metrics (KPI Cards)** - This section gives an overview of the key metrics.
 ![Key Metrics (KPI Cards)](metabase_dashboards/key_metrics.png)
 
-* Section 2: **Demographics & Diversity** - This section shows the gender distribution, thgrae employees per department, country and region.
+* Section 2: **Demographics & Diversity** - This section shows how employees (F/M) are distributed per department, country and region.
 ![Demographics & Diversity](metabase_dashboards/Dem_&_Div_1.png)
 ![Demographics & Diversity](metabase_dashboards/Dem_&_Div_2.png)
 
