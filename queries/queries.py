@@ -385,7 +385,7 @@ with pg.connect() as conn:
     df_31 = pd.read_sql(query_31, pg)
     print(df_31)
 
-print("\n\n\n-----Salary distributions in 10 buckets-----")
+print("\n\n\n-----Salary distributions into 10 buckets-----")
 query_32 = """with buckets as (
 select width_bucket(salary, 20000, 170000, 10) as bucket, count(*) total_empl
 from employees
