@@ -385,6 +385,26 @@ with pg.connect() as conn:
     df_31 = pd.read_sql(query_31, pg)
     print(df_31)
 
+print("\n\n\n-----Salary distributions in 10 buckets-----")
+query_32 = """with buckets as (
+select width_bucket(salary, 20000, 170000, 10) as bucket, count(*) total_empl
+from employees
+group by bucket
+order by bucket)
+select bucket, 
+        case 
+		    when bucket = 0 then 'Below 20000'
+			when bucket = 11 then 'Above 170000'
+			else concat(20000 + (bucket -1) * 15000, ' --> ', 20000 + bucket*15000) 
+			end as salary_range, 
+			total_empl
+from buckets
+order by bucket;"""
+
+with pg.connect() as conn:
+    df_32 = pd.read_sql(query_32, pg)
+    print(df_32)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
