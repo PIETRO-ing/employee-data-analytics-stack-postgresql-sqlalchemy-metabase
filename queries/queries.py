@@ -440,6 +440,37 @@ with pg.connect() as conn:
     df_34 = pd.read_sql(query_34, pg)
     print(df_34)
 
+print("\n\n\n-----Salary distributions (F/M) into 10 buckets-----")
+query_35 = """WITH buckets AS (
+    SELECT
+        width_bucket(salary, 20000, 170000, 10) AS bucket,
+        gender,
+        count(*) AS total_f_m_empl
+    FROM employees
+    GROUP BY bucket, gender
+),
+ranges AS (
+    SELECT
+        bucket,
+        gender,
+        total_f_m_empl,
+        CASE 
+            WHEN bucket = 0 THEN 'Below 20000'
+            WHEN bucket = 11 THEN 'Above 170000'
+            ELSE CONCAT(20000 + (bucket - 1) * 15000, ' --> ', 20000 + bucket * 15000)
+        END AS salary_range
+    FROM buckets
+)
+SELECT 
+    r.*,
+    SUM(r.total_f_m_empl) OVER (PARTITION BY r.bucket) AS total_in_range
+FROM ranges r
+ORDER BY r.bucket;"""
+
+with pg.connect() as conn:
+    df_35 = pd.read_sql(query_35, pg)
+    print(df_35)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
