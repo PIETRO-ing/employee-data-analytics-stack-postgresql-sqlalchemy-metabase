@@ -408,6 +408,22 @@ with pg.connect() as conn:
     df_32 = pd.read_sql(query_32, pg)
     print(df_32)
 
+print("\n\n\n-----Total number of employees hired over the years, shown by quarter.-----")
+query_33 = """select 
+     case 
+	      when extract (month from hire_date) in (1,2,3,4) then 'First_Quarter:Jan-Apr'
+	      when extract (month from hire_date) in (5,6,7,8) then 'Second Quarter: May-Aug'
+	      when extract (month from hire_date) in (9,10,11,12) then 'Third Quarter:Sept-Dec'
+	end quarters,
+	count(*) total_hire
+from employees 
+group by quarters
+order by quarters;"""
+
+with pg.connect() as conn:
+    df_33 = pd.read_sql(query_33, pg)
+    print(df_33)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
