@@ -302,11 +302,14 @@ with pg.connect() as conn:
     df_24 = pd.read_sql(query_24, pg)
     print(df_24)
 
-print('\n\n\n')
-query_25 = """select department,
-              replace(department, 'Clothing', 'XXXXX') modified_dept,
-              department||' '|| 'department' complete_dept_name
-              from employees;"""
+print('\n\n\n-----CTE for Department String Replacement and Concatenated Output-----')
+query_25 = """with modified_clothing_department as ( select department,
+                                         replace(department, 'Clothing', 'ATTIRE') modified_dept
+										 from employees)
+select department,
+       modified_dept,
+	   concat(modified_dept, '_', 'department') complete_mod_dept
+from modified_clothing_department;"""
 
 with pg.connect() as conn:
     df_25 = pd.read_sql(query_25, pg)
