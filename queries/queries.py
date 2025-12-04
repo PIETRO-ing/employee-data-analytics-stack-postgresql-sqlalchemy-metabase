@@ -424,6 +424,22 @@ with pg.connect() as conn:
     df_33 = pd.read_sql(query_33, pg)
     print(df_33)
 
+print("\n\n\n-----Female/Male median salary ratio.-----")
+query_34 = """WITH med AS (
+    SELECT
+        gender,
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY salary) AS med_salary
+    FROM employees
+    GROUP BY gender
+)
+SELECT
+    (SELECT med_salary FROM med WHERE gender = 'F') /
+    (SELECT med_salary FROM med WHERE gender = 'M') AS gender_pay_ratio;"""
+
+with pg.connect() as conn:
+    df_34 = pd.read_sql(query_34, pg)
+    print(df_34)
+
 print('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
