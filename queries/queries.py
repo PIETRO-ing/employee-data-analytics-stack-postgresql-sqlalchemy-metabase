@@ -315,10 +315,15 @@ with pg.connect() as conn:
     df_25 = pd.read_sql(query_25, pg)
     print(df_25)
 
-print('\n\n\n')
-query_26 = """select first_name||' '||last_name, department, sum(salary) over(partition by department), salary ,
- (salary - (select max(salary) from employees)) less_sal
-from employees;"""
+print('\n\n\n-----Lists employees with department-level salary sums and each salary’s difference from the department average.-----')
+query_26 = """select concat(first_name, ' ', last_name) full_name, 
+       department, 
+	   sum(salary) over(partition by department) total_dept_salary, 
+	   salary,
+	   (select round(avg(salary)) from employees where e1.department = department) avg_dept_sal,
+      (salary - (select round(avg(salary)) from employees where e1.department = department)) gap_dept_sal
+from employees e1
+order by department, gap_dept_sal;"""
 
 with pg.connect() as conn:
     df_26 = pd.read_sql(query_26, pg)
