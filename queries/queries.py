@@ -6,8 +6,11 @@ import time
 import logging
 import pytest
 
+# Setting logging
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+
 time.sleep(100)
-print('Hello!\nConnecting!')
+logging.INFO('Hello!\nConnecting!')
 
 # Read DB connection info from environment variables
 db_user = os.getenv('POSTGRES_USER')
@@ -442,6 +445,6 @@ ORDER BY r.bucket;"""
 df_35 = pd.read_sql(query_35, pg)
 print(df_35)
 
-print('\n\n\n---*Congratulations, all the queries are running correctly*---')
+logging.INFO('\n\n\n---*Congratulations, all the queries are running correctly*---')
 
 
