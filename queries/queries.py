@@ -39,14 +39,46 @@ pg = get_engine()
 
 time.sleep(5)
 
+# def run_query(engine, query, title=None): 
+#     print(f"\n\n\n------- {title} -------") 
+#     df = pd.read_sql(query, engine) 
+#     print(df)
+
+def run_query(query, title=None):
+    """Run a SQL query and print the results.
+
+    Args:
+        query (str): SQL query to execute.
+        title (str, optional): Optional title to display above results."""
+    
+    if title:
+        print(f"\n\n\n-------* {title} *-------")
+    else:
+        print("\n\n\n-------* Query Result *-------")
+
+    engine = get_engine()
+    
+    try:
+        df = pd.read_sql(query, engine)
+        print(df)
+        #return df
+    except Exception as e:
+        logging.error("Error executing query:")
+        logging.error(e)
+        raise
 
 
-# Just to see if everything is working
-query_00 = """select * 
-              from regions;"""
 
-df_00 = pd.read_sql(query_00, pg)
-print(df_00)
+query_00 = run_query("""select * 
+                         from regions;""")
+
+
+# # Just to see if everything is working
+# query_00 = """select * 
+#               from regions;"""
+
+# df_00 = pd.read_sql(query_00, pg)
+# print(df_00)
 
 #time.sleep(5)
 # Queries
