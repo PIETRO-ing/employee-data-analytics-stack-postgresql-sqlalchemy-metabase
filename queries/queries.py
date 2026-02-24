@@ -247,7 +247,7 @@ query_19 = """select first_name||' '||last_name full_name, department, salary,
               from employees;"""
 
 df_19 = pd.read_sql(query_19, pg)
-print(query_19)
+print(df_19)
 
 
 print('\n\n\n---*how many employees with the same first name?*---')
