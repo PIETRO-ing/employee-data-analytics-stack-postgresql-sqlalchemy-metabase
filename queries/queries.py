@@ -44,7 +44,7 @@ time.sleep(5)
 #     df = pd.read_sql(query, engine) 
 #     print(df)
 
-def run_query(query, title=None):
+def run_query(engine, query, title=None):
     """Run a SQL query and print the results.
 
     Args:
@@ -55,8 +55,6 @@ def run_query(query, title=None):
         print(f"\n\n\n-------* {title} *-------")
     else:
         print("\n\n\n-------* Query Result *-------")
-
-    engine = get_engine()
     
     try:
         df = pd.read_sql(query, engine)
@@ -68,9 +66,7 @@ def run_query(query, title=None):
         raise
 
 
-
-query_00 = run_query("""select * 
-                         from regions;""")
+run_query(pg, """select * from regions;""", 'check test')
 
 
 # # Just to see if everything is working
