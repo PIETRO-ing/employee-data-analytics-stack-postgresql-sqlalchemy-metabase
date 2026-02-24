@@ -39,11 +39,6 @@ pg = get_engine()
 
 time.sleep(5)
 
-# def run_query(engine, query, title=None): 
-#     print(f"\n\n\n------- {title} -------") 
-#     df = pd.read_sql(query, engine) 
-#     print(df)
-
 def run_query(engine, query, title=None):
     """Run a SQL query and print the results.
 
@@ -69,7 +64,7 @@ def run_query(engine, query, title=None):
 run_query(pg, """select * from regions;""", 'check test')
 
 
-#time.sleep(5)
+time.sleep(5)
 # Queries
 print('\n\n\n---*Top 5 highest paid employees*---')
 query_01 = """select * from employees
