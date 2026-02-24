@@ -18,9 +18,29 @@ db_pass = os.getenv('POSTGRES_PASSWORD')
 db_name = os.getenv('POSTGRES_DB')
 
 # Create the SQLAlchemy engine
-pg = create_engine(f'postgresql://{db_user}:{db_pass}@postgresdb/{db_name}', echo=False)
+# pg = create_engine(f'postgresql://{db_user}:{db_pass}@postgresdb/{db_name}', echo=False)
+
+def get_engine():
+    engine=  create_engine(
+        f'postgresql://{db_user}:{db_pass}@postgresdb/{db_name}',
+        echo=False)
+    try:
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+        logging.info("✅ Successfully connected to PostgreSQL.")
+    except Exception as e:
+        logging.error("❌ Failed to connect to PostgreSQL.")
+        logging.error(e)
+        raise
+
+    return engine
+
+pg = get_engine()
 
 time.sleep(5)
+
+
+
 # Just to see if everything is working
 query_00 = """select * 
               from regions;"""
@@ -479,7 +499,6 @@ ORDER BY r.bucket;"""
 
 df_35 = pd.read_sql(query_35, pg)
 print(df_35)
-print('\n\n\n')
 
 logging.info('---*Congratulations, all the queries are running correctly*---')
 
