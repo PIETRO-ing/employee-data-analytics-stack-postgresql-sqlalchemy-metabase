@@ -69,13 +69,6 @@ def run_query(engine, query, title=None):
 run_query(pg, """select * from regions;""", 'check test')
 
 
-# # Just to see if everything is working
-# query_00 = """select * 
-#               from regions;"""
-
-# df_00 = pd.read_sql(query_00, pg)
-# print(df_00)
-
 #time.sleep(5)
 # Queries
 print('\n\n\n---*Top 5 highest paid employees*---')
