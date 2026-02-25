@@ -53,26 +53,24 @@ def run_query(engine, query, title=None):
     
     try:
         df = pd.read_sql(query, engine)
-        print(df)
-        #return df
+        return df
     except Exception as e:
         logging.error("Error executing query:")
         logging.error(e)
         raise
 
 
-run_query(pg, """select * from regions;""", 'check test')
+df_00 = run_query(pg, """select * from regions;""", 'check test')
+print(df_00)
 
 
 time.sleep(5)
 # Queries
-print('\n\n\n---*Top 5 highest paid employees*---')
-query_01 = """select * from employees
+df_01 = run_query(pg, """select * from employees
                where salary > 100000
                order by salary desc
-               limit 5;"""
+               limit 5;""", 'Top 5 highest paid employees')
 
-df_01 = pd.read_sql(query_01, pg)
 print(df_01)
 
 
